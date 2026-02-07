@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For My Vaishu ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #1a002e, #0b0014);
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  text-align: center;
+}
+
+.container { padding: 30px 20px; }
+
+h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 3rem;
+  text-shadow: 0 0 25px #ff4d6d;
+}
+
+.subtitle { opacity: 0.85; margin-bottom: 20px; }
+
+.day-card {
+  background: rgba(255,255,255,0.06);
+  border-radius: 22px;
+  padding: 20px;
+  margin: 18px auto;
+  max-width: 520px;
+  box-shadow: 0 0 25px rgba(255,77,109,0.35);
+}
+
+.locked { opacity: 0.45; }
+
+button {
+  background: #ff4d6d;
+  border: none;
+  padding: 12px 26px;
+  border-radius: 30px;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 18px #ff4d6d;
+  margin-top: 10px;
+}
+
+.content { margin-top: 18px; animation: fadeUp 1.2s ease forwards; }
+
+img {
+  width: 100%;
+  border-radius: 18px;
+  margin-top: 15px;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mute button */
+#muteBtn {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  background: rgba(0,0,0,0.4);
+  border: 1px solid #ff4d6d;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<button id="muteBtn">🔊 Music</button>
+
+<div id="music"></div>
+
+<div class="container">
+  <h1>For My Vaishu ❤️</h1>
+  <p class="subtitle">One surprise every day… only for you ✨</p>
+  <div id="days"></div>
+</div>
+
+<script>
+/* DATE LOGIC */
+const today = new Date();
+const current = `${String(today.getMonth()+1).padStart(2,"0")}-${String(today.getDate()).padStart(2,"0")}`;
+
+/* SONG AUTO SWITCH */
+const normalSong = "x4R8O0pWc9Y";   // Inkem Inkem Inkem Kaavaale
+const valentinesSong = "ZxF8mKZ0CkI"; // Oh Prema – Sita Ramam
+
+const songId = (current === "02-14") ? valentinesSong : normalSong;
+
+document.getElementById("music").innerHTML = `
+<iframe id="ytplayer" width="0" height="0"
+src="https://www.youtube.com/embed/${songId}?autoplay=1&loop=1&playlist=${songId}"
+allow="autoplay"></iframe>
+`;
+
+/* MUTE TOGGLE */
+let muted = false;
+document.getElementById("muteBtn").onclick = () => {
+  muted = !muted;
+  document.getElementById("ytplayer").style.display = muted ? "none" : "block";
+  document.getElementById("muteBtn").innerText = muted ? "🔇 Muted" : "🔊 Music";
+};
+
+/* DAYS DATA */
+const daysData = [
+  { title: "🌹 Rose Day", date: "02-07", text: "Vaishu, you are my forever rose 🌹" },
+  { title: "💍 Propose Day", date: "02-08", text: "Vaishu… will you be mine today & always? ❤️" },
+  { title: "🍫 Chocolate Day", date: "02-09", text: "Sweet like chocolate, addictive like you 🍫" },
+  { title: "🧸 Teddy Day", date: "02-10", text: "If I can’t hug you, let this teddy do it 🤍" },
+  { title: "🤞 Promise Day", date: "02-11", text: "I promise to love you endlessly ❤️" },
+  { title: "🤍 Hug Day", date: "02-12", text: "Close your eyes… this is my hug 🤍" },
+  { title: "❤️ Valentine’s Day", date: "02-14", text: `
+    Vaishu,<br><br>
+    Nee navvu naa jeevithaniki velugu.<br>
+    Nee maatalu naa hrudayaniki prashanthatha.<br><br>
+    Ee jeevitham lo naa prathi roju,<br>
+    naa prathi kala…<br>
+    anni neetho paate undali ani naa manasulo oka maata maatrame undi.<br><br>
+    Nuvvu naa prema.<br>
+    Nuvvu naa lokam.<br><br>
+    Happy Valentine’s Day ra ❤️
+  `}
+];
+
+const container = document.getElementById("days");
+
+daysData.forEach((day, i) => {
+  const unlocked = current >= day.date;
+  const card = document.createElement("div");
+  card.className = `day-card ${!unlocked ? "locked" : ""}`;
+  card.innerHTML = `
+    <h2>${day.title}</h2>
+    ${unlocked ? `<button onclick="openDay(${i})">Open 💖</button>` : `<p>🔒 Unlocks soon</p>`}
+    <div id="content-${i}" class="content" style="display:none;"></div>
+  `;
+  container.appendChild(card);
+});
+
+function openDay(i) {
+  const c = document.getElementById(`content-${i}`);
+  c.style.display = "block";
+  if (i === 6) {
+    c.innerHTML = `
+      <p>${daysData[i].text}</p>
+      <img src="photos/1.jpg">
+      <img src="photos/2.jpg">
+      <img src="photos/3.jpg">
+    `;
+  } else {
+    c.innerHTML = `<p>${daysData[i].text}</p>`;
+  }
+}
+</script>
+
+</body>
+</html>
