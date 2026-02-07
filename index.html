@@ -1,220 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>Vaishu ❤️</title>
+<meta charset="UTF-8">
+<title>Valentine Week ❤️</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 
 <style>
 /* ---------- GLOBAL RESET ---------- */
 * { margin:0; padding:0; box-sizing:border-box; }
-html,body { height:100%; font-family:'Poppins',sans-serif; overflow:hidden; }
-
-/* ---------- BACKGROUND ---------- */
-body {
-  background: linear-gradient(-45deg, #12001a, #2a0036, #14001f, #32004b);
-  background-size: 400% 400%;
-  animation: bgMove 12s ease infinite;
-  color:#fff;
-}
-
-@keyframes bgMove {
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
-}
+html, body { height:100%; font-family:'Poppins',sans-serif; background: #0f0018; color: #fff; }
 
 /* ---------- MAIN WRAPPER ---------- */
-#app {
-  height:100%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
+.container {
+  max-width: 850px;
+  margin: auto;
+  padding: 40px 20px 80px;
 }
 
-/* ---------- GLASS PANEL ---------- */
-.panel {
-  width:90%;
-  max-width:900px;
-  height:75%;
-  background:rgba(255,255,255,0.06);
-  backdrop-filter: blur(20px);
-  border-radius:30px;
-  box-shadow:0 0 80px rgba(255,77,109,0.35);
-  padding:50px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
+/* ---------- HEADER ---------- */
+.header {
   text-align:center;
-  animation: fadeIn 1.8s ease;
+  margin-bottom:35px;
 }
-
-@keyframes fadeIn {
-  from {opacity:0; transform:scale(0.95)}
-  to {opacity:1; transform:scale(1)}
+.header h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 3.8rem;
+  color: #ff6f91;
+  text-shadow:0 0 20px #ff4a76;
 }
-
-/* ---------- TEXT ---------- */
-.title {
-  font-family:'Dancing Script',cursive;
-  font-size:3.8rem;
-  color:#ff7aa2;
-  text-shadow:0 0 25px #ff4d6d;
-}
-
-.subtitle {
-  margin-top:15px;
-  font-size:1.2rem;
-  opacity:0.85;
-}
-
-.poetry {
-  margin-top:40px;
-  font-family:'Playfair Display',serif;
-  font-size:2rem;
-  line-height:1.4;
-  animation: glowText 3s infinite alternate;
-}
-
-@keyframes glowText {
-  from { text-shadow:0 0 10px #ff4d6d; }
-  to { text-shadow:0 0 35px #ff9bb5; }
-}
-
-/* ---------- CTA ---------- */
-button {
-  margin-top:50px;
-  align-self:center;
-  padding:14px 38px;
-  border-radius:40px;
-  border:none;
-  background:linear-gradient(135deg,#ff4d6d,#ff9bb5);
-  color:#fff;
-  font-size:1rem;
-  cursor:pointer;
-  box-shadow:0 0 30px #ff4d6d;
-  transition:all .4s ease;
-}
-
-button:hover {
-  transform:scale(1.15);
-  box-shadow:0 0 60px #ff4d6d;
-}
-
-/* ---------- FLOATING HEARTS ---------- */
-.heart {
-  position:absolute;
-  font-size:18px;
-  animation: floatUp 8s linear infinite;
-  opacity:.7;
-}
-
-@keyframes floatUp {
-  from { transform:translateY(100vh) scale(0.8); }
-  to { transform:translateY(-120vh) scale(1.4); opacity:0; }
+.header p {
+  opacity:0.8;
+  font-size:1.1rem;
 }
 
 /* ---------- MUSIC BUTTON ---------- */
-#musicBtn {
-  position:fixed;
-  bottom:25px;
-  right:25px;
-  background:rgba(0,0,0,0.5);
-  border:1px solid #ff4d6d;
-  padding:10px 18px;
+#playMusic {
+  display: block;
+  margin: 25px auto;
+  padding: 12px 28px;
+  background: #ff6f91;
+  border:none;
   border-radius:30px;
   cursor:pointer;
-  font-size:.9rem;
+  color:#fff;
+  font-size:1rem;
+  box-shadow:0 0 18px #ff6f91;
+}
+
+/* ---------- WEEK LIST ---------- */
+.day-card {
+  background: rgba(255,255,255,0.08);
+  border-left:4px solid #ff6f91;
+  border-radius:15px;
+  padding:18px 22px;
+  margin: 18px 0;
+  transition: transform .3s ease;
+}
+.day-card:hover { transform: scale(1.02); }
+.day-card h2 { font-weight:500; }
+.day-card p { opacity:0.85; margin-top:8px; line-height:1.45; }
+.locked p { opacity:0.5; font-style:italic; }
+
+/* ---------- FOOTER ---------- */
+.footer {
+  text-align:center;
+  margin-top:55px;
+  opacity:0.7;
+  font-size: .9rem;
 }
 </style>
 </head>
 
 <body>
 
-<div id="music"></div>
-<div id="musicBtn">🎵 Telugu Love</div>
+<div class="container">
 
-<div id="app">
-  <div class="panel" id="scene">
-    <div class="title">Vaishu ❤️</div>
-    <div class="subtitle">This is not a website… it’s a feeling</div>
-
-    <div class="poetry">
-      “Nee peru naa hrudayam lo  
-      oka melody laa play avuthundi…”
-    </div>
-
-    <button onclick="nextScene()">Feel It ✨</button>
+  <!-- HEADER -->
+  <div class="header">
+    <h1>Valentine Week ❤️</h1>
+    <p>7 Days of Love — Every day a new feeling</p>
   </div>
+
+  <!-- MUSIC BUTTON -->
+  <button id="playMusic">▶ Play Telugu Love Song</button>
+
+  <!-- HIDDEN YOUTUBE PLAYER -->
+  <div id="musicPlayer"></div>
+
+  <!-- WEEK CONTENT -->
+  <div id="weekList"></div>
+
+  <div class="footer">Made with ❤️ for someone special</div>
 </div>
 
 <script>
-/* ---------------- MUSIC ---------------- */
-// 🔴 REPLACE THESE WITH YOUR YOUTUBE VIDEO IDs
-const introSong = "INTRO_VIDEO_ID";      // ex: Inkem Inkem
-const deepLoveSong = "VALENTINE_VIDEO_ID"; // ex: Oh Prema
+/* ------------------- DATE LOGIC ------------------- */
+const today = new Date();
+const current = `${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
 
-let playingIntro = true;
+/* ------------------- SONG SETUP ------------------- */
+const videoId = "1v_qKcDa_v4";  // Kissik from Pushpa 2: The Rule
 
-function loadMusic(id){
-  document.getElementById("music").innerHTML = `
-  <iframe id="yt"
-    width="0" height="0"
-    src="https://www.youtube.com/embed/${id}?autoplay=1&loop=1&playlist=${id}"
-    allow="autoplay"></iframe>`;
-}
+document.getElementById("playMusic").addEventListener("click", () => {
+  document.getElementById("musicPlayer").innerHTML = `
+    <iframe width="0" height="0"
+      src="https://www.youtube.com/embed/${videoId}?autoplay=1"
+      allow="autoplay">
+    </iframe>`;
+  document.getElementById("playMusic").style.display = "none";
+});
 
-loadMusic(introSong);
-
-document.getElementById("musicBtn").onclick = ()=>{
-  loadMusic(playingIntro ? deepLoveSong : introSong);
-  playingIntro = !playingIntro;
-};
-
-/* ---------------- SCENES ---------------- */
-const scenes = [
-  {
-    title:"Vaishu ❤️",
-    text:"“Nee navvu naa jeevithaniki velugu…”"
-  },
-  {
-    title:"Heartbeat",
-    text:"“Nee gurinchi alochinche prathi kshanam…  
-    naa hrudayam konchem fast ga kottukuntundi.”"
-  },
-  {
-    title:"Forever",
-    text:"“Ee journey lo naa pakkana  
-    nuvvu unte chaalu…”"
-  }
+/* ------------------- VALENTINE WEEK ------------------- */
+const days = [
+  { title:"🌹 Rose Day – Feb 7", date:"02-07", desc:"Today I send you a rose, but my love for you has no end." },
+  { title:"💍 Propose Day – Feb 8", date:"02-08", desc:"To the one whose smile writes my tomorrow." },
+  { title:"🍫 Chocolate Day – Feb 9", date:"02-09", desc:"Sweet moments with you taste sweeter than chocolate." },
+  { title:"🧸 Teddy Day – Feb 10", date:"02-10", desc:"May my love hold you like this teddy, always." },
+  { title:"🤞 Promise Day – Feb 11", date:"02-11", desc:"I promise to make you smile even on silent days." },
+  { title:"🤍 Hug Day – Feb 12", date:"02-12", desc:"Let this virtual hug wrap your heart today." },
+  { title:"❤️ Valentine’s Day – Feb 14", date:"02-14", desc:"With you, every heartbeat feels like a song." }
 ];
 
-let index = 0;
+const list = document.getElementById("weekList");
 
-function nextScene(){
-  index = (index + 1) % scenes.length;
-  document.getElementById("scene").innerHTML = `
-    <div class="title">${scenes[index].title}</div>
-    <div class="poetry">${scenes[index].text}</div>
-    <button onclick="nextScene()">Again 💖</button>
+days.forEach(d => {
+  const unlocked = current >= d.date;
+  const card = document.createElement("div");
+  card.className = `day-card ${!unlocked ? 'locked' : ''}`;
+  card.innerHTML = `
+    <h2>${d.title}</h2>
+    <p>${unlocked ? d.desc : "This day unlocks on its date ❤️"}</p>
   `;
-  spawnHearts();
-}
-
-/* ---------------- HEARTS ---------------- */
-function spawnHearts(){
-  for(let i=0;i<15;i++){
-    const h=document.createElement("div");
-    h.className="heart";
-    h.innerHTML="❤️";
-    h.style.left=Math.random()*100+"vw";
-    h.style.animationDuration=(5+Math.random()*4)+"s";
-    document.body.appendChild(h);
-    setTimeout(()=>h.remove(),9000);
-  }
-}
+  list.appendChild(card);
+});
 </script>
 
 </body>
