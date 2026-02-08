@@ -11,13 +11,13 @@
 * { margin:0; padding:0; box-sizing:border-box; }
 
 body {
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(180deg,#fff7f9,#eef7f1);
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(180deg,#fff7f9,#eef7f1);
   color:#2e2e2e;
   overflow-x:hidden;
 }
 
-/* ========== LOCK SCREEN ========== */
+/* LOCK */
 #lockScreen {
   height:100vh;
   display:flex;
@@ -26,10 +26,8 @@ body {
   align-items:center;
   text-align:center;
 }
-
 #lockScreen h1 { font-size:2.4rem; color:#c2185b; }
 #lockScreen p { margin:10px 0 25px; opacity:.85; }
-
 #lockScreen input {
   padding:12px;
   width:240px;
@@ -37,7 +35,6 @@ body {
   border:1px solid #ccc;
   text-align:center;
 }
-
 #lockScreen button {
   margin-top:15px;
   padding:12px 40px;
@@ -45,52 +42,57 @@ body {
   border:none;
   background:linear-gradient(45deg,#2e7d32,#f48fb1);
   color:white;
-  font-size:1rem;
 }
-
 #errorMsg { margin-top:10px; color:#c62828; }
 
-/* ========== MAIN CONTENT ========== */
+/* MAIN */
 #mainContent { display:none; animation:fadeIn 1.2s ease; }
 
-/* HERO */
+/* HERO (FIXED HEIGHT) */
 .hero {
-  min-height:100vh;
-  padding:60px 25px;
+  min-height:75vh;
+  padding:50px 25px;
   display:flex;
   flex-direction:column;
   justify-content:center;
   text-align:center;
 }
-
-.hero h2 {
-  font-size:2.6rem;
-  color:#2e7d32;
-}
-
+.hero h2 { font-size:2.6rem; color:#2e7d32; }
 .hero p {
-  margin-top:20px;
+  margin-top:18px;
   font-size:1.05rem;
   line-height:1.8;
   opacity:.9;
 }
 
-/* DAYS */
+/* DAY CARD */
 .day {
   margin:22px;
-  padding:28px;
+  padding:26px;
   border-radius:30px;
   background:rgba(255,255,255,0.85);
   box-shadow:0 20px 45px rgba(0,0,0,0.06);
-  transition:.6s;
 }
 
+/* HEADER ALWAYS VISIBLE */
 .day h3 { color:#ad1457; }
 
-.day.inactive p {
-  opacity:.45;
+/* BODY COLLAPSE CONTROL */
+.dayBody {
+  overflow:hidden;
+  max-height:0;
+  opacity:0;
+  transition:max-height 1s ease, opacity 1s ease;
 }
 
+/* ACTIVE DAY */
+.day.active .dayBody {
+  max-height:1200px;
+  opacity:1;
+  margin-top:12px;
+}
+
+/* INACTIVE MESSAGE */
 .lockNote {
   margin-top:10px;
   font-size:.85rem;
@@ -99,16 +101,13 @@ body {
 
 /* QUESTIONS */
 .question { margin-top:18px; }
-
 .options button {
   margin:6px;
   padding:8px 20px;
   border-radius:22px;
   border:none;
   background:#fde4ec;
-  transition:.3s;
 }
-
 .options button:hover { background:#f8bbd0; }
 
 .thankyou {
@@ -120,11 +119,7 @@ body {
 }
 
 /* FINAL DAY */
-.final h3 {
-  font-size:2.4rem;
-  color:#c2185b;
-}
-
+.final h3 { font-size:2.4rem; color:#c2185b; }
 .final p {
   margin-top:20px;
   font-size:1.08rem;
@@ -142,11 +137,9 @@ body {
   opacity:.7;
   animation:fall linear infinite;
 }
-
 @keyframes fall {
   to { transform:translateY(110vh) rotate(360deg); }
 }
-
 @keyframes fadeIn {
   from {opacity:0} to {opacity:1}
 }
@@ -172,16 +165,17 @@ body {
   <h2>Vaishu 🤍</h2>
   <p>
     This is not a website.<br>
-    This is a feeling I built slowly — one day at a time.<br><br>
+    This is a feeling built slowly — one day at a time.<br><br>
     We fought. We waited. We stayed.<br>
-    Until the day I finally get to see you walk towards me.<br><br>
-    — Rakesh
+    Until the day I finally see you walk towards me.<br><br>
+    — from your forever bava
   </p>
 </section>
 
 <!-- DAYS -->
 <div class="day" data-day="7">
 <h3>🌹 Rose Day</h3>
+<div class="dayBody">
 <p>Even silence bloomed when you stayed.</p>
 <div class="question">
 <p>Love feels like…</p>
@@ -192,9 +186,12 @@ body {
 <p class="thankyou">Thank you for choosing this, Vaishu 🤍</p>
 </div>
 </div>
+<div class="lockNote"></div>
+</div>
 
 <div class="day" data-day="8">
 <h3>🤝 Propose Day</h3>
+<div class="dayBody">
 <p>I still choose you — quietly, forever.</p>
 <div class="question">
 <p>What matters most?</p>
@@ -205,51 +202,22 @@ body {
 <p class="thankyou">Always 🤍</p>
 </div>
 </div>
-
-<div class="day" data-day="9">
-<h3>🍫 Chocolate Day</h3>
-<p>Sweet, bitter, real — still love.</p>
-<div class="question">
-<p>Our bond is…</p>
-<div class="options">
-<button onclick="choose(this)">Strong</button>
-<button onclick="choose(this)">True</button>
-</div>
-<p class="thankyou">That’s everything 🤍</p>
-</div>
-</div>
-
-<div class="day" data-day="10">
-<h3>🧸 Teddy Day</h3>
-<p>Comfort waits patiently.</p>
-</div>
-
-<div class="day" data-day="11">
-<h3>💌 Promise Day</h3>
-<p>I promise staying.</p>
-</div>
-
-<div class="day" data-day="12">
-<h3>🤗 Hug Day</h3>
-<p>The hug we owe destiny.</p>
-</div>
-
-<div class="day" data-day="13">
-<h3>💋 Kiss Day</h3>
-<p>Some moments are worth waiting for.</p>
+<div class="lockNote"></div>
 </div>
 
 <div class="day final" data-day="14">
 <h3>❤️ Valentine’s Day</h3>
+<div class="dayBody">
 <p>
 Vaishu,<br><br>
-Three years of distance could not undo what we built.<br>
+Three years of distance couldn’t break us.<br>
 We didn’t meet — yet we stayed.<br><br>
-Until the day you come back from the UK,<br>
+Until you come back from the UK,<br>
 every heartbeat here waits for you.<br><br>
 Forever yours,<br>
 <strong>Rakesh</strong>
 </p>
+</div>
 </div>
 
 </div>
@@ -272,17 +240,20 @@ function unlock(){
 function activateDays(){
   const today=new Date().getDate();
   document.querySelectorAll(".day").forEach(d=>{
-    if(today < d.dataset.day){
-      d.classList.add("inactive");
-      d.insertAdjacentHTML("beforeend","<div class='lockNote'>This will bloom on its day 🤍</div>");
+    const note=d.querySelector(".lockNote");
+    if(today>=d.dataset.day){
+      d.classList.add("active");
+      if(note) note.innerText="";
+    } else {
+      if(note) note.innerText="This will bloom on its day 🤍";
     }
   });
 }
 
 function choose(btn){
-  const box=btn.closest(".question");
-  box.querySelectorAll("button").forEach(b=>b.disabled=true);
-  box.querySelector(".thankyou").style.opacity=1;
+  const q=btn.closest(".question");
+  q.querySelectorAll("button").forEach(b=>b.disabled=true);
+  q.querySelector(".thankyou").style.opacity=1;
 }
 
 function petals(){
