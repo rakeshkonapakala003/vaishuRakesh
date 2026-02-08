@@ -2,22 +2,28 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For Vaishu ❤️</title>
+<title>Vaishu & Rakesh ❤️</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 
 <style>
+:root{
+  --pink:#f4a6b8;
+  --green:#c7dfc5;
+  --ivory:#fffaf3;
+  --gold:#d4af37;
+  --text:#3a2c2c;
+}
+
 *{margin:0;padding:0;box-sizing:border-box}
 body{
   font-family:'Poppins',sans-serif;
-  background: radial-gradient(circle at top,#2b0036,#0b0014);
-  color:#fff;
-  overflow-x:hidden;
+  background:linear-gradient(180deg,var(--ivory),#fff);
+  color:var(--text);
 }
 
-/* ---------- HERO ---------- */
+/* HERO */
 .hero{
   min-height:100vh;
   display:flex;
@@ -26,89 +32,68 @@ body{
   align-items:center;
   text-align:center;
   padding:40px 20px;
+  background:
+    radial-gradient(circle at top,var(--green),transparent 60%),
+    radial-gradient(circle at bottom,var(--pink),transparent 60%);
 }
 .hero h1{
   font-family:'Dancing Script',cursive;
-  font-size:4rem;
-  background:linear-gradient(45deg,#ff7eb3,#ff758c);
-  -webkit-background-clip:text;
-  color:transparent;
-  text-shadow:0 0 25px rgba(255,120,170,.6);
+  font-size:3.8rem;
+  color:#5c3a3a;
 }
 .hero p{
-  margin-top:15px;
-  font-size:1.15rem;
-  opacity:.85;
+  margin-top:16px;
+  font-size:1.1rem;
   max-width:520px;
 }
 
-/* ---------- MUSIC ---------- */
-#playMusic{
-  margin-top:30px;
-  padding:14px 32px;
-  border-radius:40px;
-  border:none;
-  background:linear-gradient(45deg,#ff5f9e,#ff8fb8);
-  color:#fff;
-  font-size:1rem;
-  cursor:pointer;
-  box-shadow:0 0 25px rgba(255,95,158,.6);
-}
-#player{display:none}
-
-/* ---------- WEEK ---------- */
+/* WEEK */
 .week{
   max-width:900px;
-  margin:0 auto 80px;
-  padding:0 20px;
+  margin:0 auto;
+  padding:60px 20px;
 }
 .day{
-  margin:45px 0;
-  padding:35px;
+  background:rgba(255,255,255,.85);
   border-radius:28px;
-  position:relative;
-  overflow:hidden;
-  backdrop-filter:blur(18px);
-  background:rgba(255,255,255,.08);
-  box-shadow:0 20px 60px rgba(0,0,0,.4);
-  transform:translateY(40px);
+  padding:34px;
+  margin-bottom:50px;
+  box-shadow:0 30px 70px rgba(0,0,0,.08);
   opacity:0;
-  transition:all .9s ease;
+  transform:translateY(40px);
+  transition:all .8s ease;
 }
 .day.show{
-  transform:translateY(0);
   opacity:1;
+  transform:translateY(0);
 }
 .day h2{
   font-weight:500;
   font-size:1.6rem;
+  color:#6a3d3d;
 }
 .day p{
-  margin-top:15px;
+  margin-top:14px;
   line-height:1.7;
-  opacity:.9;
 }
 
-/* ---------- GLOW ACCENTS ---------- */
-.day::before{
-  content:"";
-  position:absolute;
-  inset:-2px;
-  border-radius:30px;
-  background:linear-gradient(120deg,transparent,rgba(255,255,255,.25),transparent);
-  animation:shine 6s infinite linear;
-}
-@keyframes shine{
-  from{transform:translateX(-100%)}
-  to{transform:translateX(100%)}
+/* INTERACTIONS */
+.button{
+  margin-top:18px;
+  padding:10px 22px;
+  border-radius:24px;
+  border:none;
+  background:linear-gradient(45deg,var(--pink),var(--green));
+  cursor:pointer;
+  font-size:.9rem;
 }
 
-/* ---------- FOOTER ---------- */
+/* FOOTER */
 .footer{
   text-align:center;
-  padding-bottom:40px;
-  opacity:.6;
+  padding:30px;
   font-size:.9rem;
+  opacity:.7;
 }
 </style>
 </head>
@@ -116,68 +101,99 @@ body{
 <body>
 
 <!-- HERO -->
-<section class="hero">
-  <h1>Vaishu ❤️</h1>
+<section class="hero" id="start">
+  <h1>Vaishu & Rakesh</h1>
   <p>
-    This isn’t just a Valentine page.<br>
-    It’s 7 days of feelings I never learned how to say… until you.
+    This page isn’t for impressing anyone.<br>
+    It’s just Rakesh choosing Vaishu — quietly, completely, every day.
   </p>
-
-  <button id="playMusic">▶ Play Our Telugu Vibe</button>
-  <div id="player"></div>
 </section>
 
 <!-- WEEK -->
 <section class="week" id="week"></section>
 
 <div class="footer">
-  Made with love — only for Vaishu ✨
+  Made with warmth, patience & pure love 🌸
 </div>
 
+<!-- Invisible Music -->
+<iframe id="music" width="0" height="0" allow="autoplay"></iframe>
+
 <script>
-/* ===== CONFIG ===== */
-const herName = "Vaishu";
-const videoId = "1v_qKcDa_v4"; // Telugu song
+const her="Vaishu";
+const him="Rakesh";
+const song="1v_qKcDa_v4"; // Telugu song
 
-/* ===== MUSIC ===== */
-document.getElementById("playMusic").onclick = () => {
-  document.getElementById("player").innerHTML =
-   `<iframe width="0" height="0"
-     src="https://www.youtube.com/embed/${videoId}?autoplay=1"
-     allow="autoplay"></iframe>`;
-  document.getElementById("playMusic").style.display="none";
-};
+/* MUSIC: plays on first interaction anywhere */
+let played=false;
+document.addEventListener("click",()=>{
+ if(!played){
+  document.getElementById("music").src=
+   `https://www.youtube.com/embed/${song}?autoplay=1&loop=1&playlist=${song}`;
+  played=true;
+ }
+},{once:true});
 
-/* ===== DATE ===== */
-const now = new Date();
-const today = `${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+/* DATE */
+const now=new Date();
+const today=`${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
 
-/* ===== DAYS ===== */
-const days = [
- {d:"02-07",t:"🌹 Rose Day",m:`${herName}, if feelings had a shape… they’d look like you. Soft, rare, unforgettable.`},
- {d:"02-08",t:"💍 Propose Day",m:`I won’t ask dramatically. I’ll just say this — my days make sense when your name is in them.`},
- {d:"02-09",t:"🍫 Chocolate Day",m:`Sweetness exists… but it still learned a lot from your smile, ${herName}.`},
- {d:"02-10",t:"🧸 Teddy Day",m:`If comfort had a human form, I’d call it you. Always warm. Always safe.`},
- {d:"02-11",t:"🤞 Promise Day",m:`I promise — not perfection. Just honesty, effort, and choosing you again and again.`},
- {d:"02-12",t:"🤍 Hug Day",m:`This page can’t hug you… but if it could, it would never let go.`},
- {d:"02-14",t:"❤️ Valentine’s Day",m:`With you, ${herName}, love doesn’t feel loud. It feels right.`}
+/* DAYS CONTENT */
+const days=[
+{
+ d:"02-07", t:"🌹 Rose Day",
+ m:`${her}, some loves shout. Ours feels like jasmine — soft, steady, always present.`,
+ extra:`<button class="button" onclick="this.innerText='🌹 For you, always'">Give Rose</button>`
+},
+{
+ d:"02-08", t:"💍 Propose Day",
+ m:`${him} doesn’t propose with drama. Just this truth — life feels right when you’re in it.`,
+ extra:`<button class="button" onclick="this.innerText='Yes, always 🤍'">Your Answer</button>`
+},
+{
+ d:"02-09", t:"🍫 Chocolate Day",
+ m:`Sweet things exist, ${her}. But comfort tastes better — like evening tea with you.`,
+ extra:`<button class="button" onclick="alert('Because peace is sweeter than sugar 🤍')">Why you?</button>`
+},
+{
+ d:"02-10", t:"🧸 Teddy Day",
+ m:`If warmth had a place, ${him} would rest it with you.`,
+ extra:`<button class="button" onclick="this.innerText='🤍 Hug received'">Tap for Hug</button>`
+},
+{
+ d:"02-11", t:"🤞 Promise Day",
+ m:`No big promises. Just this — I’ll stay gentle, even on hard days.`,
+ extra:`<button class="button" onclick="this.innerText='Promise kept 🌿'">Seal Promise</button>`
+},
+{
+ d:"02-12", t:"🤍 Hug Day",
+ m:`Some hugs heal without words. Imagine one here.`,
+ extra:`<button class="button" onclick="this.innerText='Closer 🤍'">Hold</button>`
+},
+{
+ d:"02-14", t:"❤️ Valentine’s Day",
+ m:`${her}, with you, love feels calm. Like coming home.`,
+ extra:`<button class="button" onclick="this.innerText='Forever begins 🌸'">Open Heart</button>`
+}
 ];
 
-/* ===== RENDER ===== */
+/* RENDER */
 const wrap=document.getElementById("week");
-days.forEach(day=>{
-  const open = today>=day.d;
-  const div=document.createElement("div");
-  div.className="day";
-  div.innerHTML=`
-    <h2>${day.t}</h2>
-    <p>${open ? day.m : "This feeling unlocks on its day… ❤️"}</p>`;
-  wrap.appendChild(div);
+days.forEach(x=>{
+ const open=today>=x.d;
+ const div=document.createElement("div");
+ div.className="day";
+ div.innerHTML=`
+  <h2>${x.t}</h2>
+  <p>${open?x.m:"This feeling opens on its day 🤍"}</p>
+  ${open?x.extra:""}
+ `;
+ wrap.appendChild(div);
 });
 
-/* ===== SCROLL ANIMATION ===== */
+/* SCROLL */
 const obs=new IntersectionObserver(e=>{
- e.forEach(x=>x.isIntersecting&&x.target.classList.add("show"));
+ e.forEach(i=>i.isIntersecting&&i.target.classList.add("show"));
 },{threshold:.2});
 document.querySelectorAll(".day").forEach(d=>obs.observe(d));
 </script>
