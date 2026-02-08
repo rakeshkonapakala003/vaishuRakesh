@@ -12,12 +12,12 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg,#fdeff2,#e6f4ea);
+  background: linear-gradient(180deg,#fff7f9,#eef7f1);
   color:#2e2e2e;
   overflow-x:hidden;
 }
 
-/* LOCK */
+/* ========== LOCK SCREEN ========== */
 #lockScreen {
   height:100vh;
   display:flex;
@@ -27,106 +27,119 @@ body {
   text-align:center;
 }
 
-#lockScreen h1 { color:#c2185b; font-size:2.3rem; }
-#lockScreen p { margin:10px 0 20px; opacity:.85; }
+#lockScreen h1 { font-size:2.4rem; color:#c2185b; }
+#lockScreen p { margin:10px 0 25px; opacity:.85; }
 
 #lockScreen input {
   padding:12px;
-  width:230px;
-  border-radius:25px;
+  width:240px;
+  border-radius:30px;
   border:1px solid #ccc;
   text-align:center;
 }
 
 #lockScreen button {
   margin-top:15px;
-  padding:10px 35px;
+  padding:12px 40px;
   border-radius:30px;
   border:none;
-  background:linear-gradient(45deg,#2e7d32,#f06292);
+  background:linear-gradient(45deg,#2e7d32,#f48fb1);
   color:white;
-  cursor:pointer;
+  font-size:1rem;
 }
 
 #errorMsg { margin-top:10px; color:#c62828; }
 
-/* MAIN */
+/* ========== MAIN CONTENT ========== */
 #mainContent { display:none; animation:fadeIn 1.2s ease; }
 
-header {
-  padding:40px 20px;
+/* HERO */
+.hero {
+  min-height:100vh;
+  padding:60px 25px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
   text-align:center;
 }
 
-header h2 { color:#2e7d32; font-size:2rem; }
-header p { margin-top:10px; opacity:.85; }
+.hero h2 {
+  font-size:2.6rem;
+  color:#2e7d32;
+}
 
-/* DAY CARD */
+.hero p {
+  margin-top:20px;
+  font-size:1.05rem;
+  line-height:1.8;
+  opacity:.9;
+}
+
+/* DAYS */
 .day {
-  margin:20px;
-  padding:25px;
-  border-radius:28px;
-  background:rgba(255,255,255,0.78);
+  margin:22px;
+  padding:28px;
+  border-radius:30px;
+  background:rgba(255,255,255,0.85);
   box-shadow:0 20px 45px rgba(0,0,0,0.06);
-  position:relative;
-  transition:.4s;
+  transition:.6s;
 }
 
-.day.locked {
-  filter:blur(2px);
-  opacity:.55;
-  pointer-events:none;
+.day h3 { color:#ad1457; }
+
+.day.inactive p {
+  opacity:.45;
 }
 
-.day h3 { color:#ad1457; margin-bottom:10px; }
+.lockNote {
+  margin-top:10px;
+  font-size:.85rem;
+  color:#888;
+}
 
-.question { margin-top:15px; }
+/* QUESTIONS */
+.question { margin-top:18px; }
 
 .options button {
   margin:6px;
-  padding:8px 18px;
-  border-radius:20px;
+  padding:8px 20px;
+  border-radius:22px;
   border:none;
-  background:#fce4ec;
-  cursor:pointer;
+  background:#fde4ec;
   transition:.3s;
 }
 
 .options button:hover { background:#f8bbd0; }
 
 .thankyou {
-  margin-top:10px;
-  color:#2e7d32;
+  margin-top:12px;
   font-size:.9rem;
+  color:#2e7d32;
   opacity:0;
   transition:.6s;
 }
 
-/* VALENTINE DAY */
-.final {
-  text-align:center;
-}
-
+/* FINAL DAY */
 .final h3 {
-  font-size:2.2rem;
+  font-size:2.4rem;
   color:#c2185b;
 }
 
 .final p {
-  margin-top:15px;
-  font-size:1.05rem;
-  line-height:1.8;
+  margin-top:20px;
+  font-size:1.08rem;
+  line-height:1.9;
 }
 
 /* PETALS */
 .petal {
   position:fixed;
   top:-10px;
-  width:8px;
-  height:8px;
+  width:7px;
+  height:7px;
   background:white;
   border-radius:50%;
-  opacity:.8;
+  opacity:.7;
   animation:fall linear infinite;
 }
 
@@ -135,7 +148,7 @@ header p { margin-top:10px; opacity:.85; }
 }
 
 @keyframes fadeIn {
-  from{opacity:0} to{opacity:1}
+  from {opacity:0} to {opacity:1}
 }
 </style>
 </head>
@@ -145,7 +158,7 @@ header p { margin-top:10px; opacity:.85; }
 <!-- LOCK -->
 <div id="lockScreen">
   <h1>💍 Vaishu & Rakesh</h1>
-  <p>A Valentine week written with patience</p>
+  <p>A love that chose patience</p>
   <input type="password" id="passwordInput" placeholder="Our secret 🤍">
   <button onclick="unlock()">Enter</button>
   <p id="errorMsg"></p>
@@ -154,153 +167,122 @@ header p { margin-top:10px; opacity:.85; }
 <!-- MAIN -->
 <div id="mainContent">
 
-<header>
-  <h2>Happy Valentine Week, Vaishu 🤍</h2>
-  <p>This is from Rakesh — slowly, day by day, just like our love</p>
-</header>
+<!-- HERO -->
+<section class="hero">
+  <h2>Vaishu 🤍</h2>
+  <p>
+    This is not a website.<br>
+    This is a feeling I built slowly — one day at a time.<br><br>
+    We fought. We waited. We stayed.<br>
+    Until the day I finally get to see you walk towards me.<br><br>
+    — Rakesh
+  </p>
+</section>
 
 <!-- DAYS -->
 <div class="day" data-day="7">
 <h3>🌹 Rose Day</h3>
-<p>Vaishu, even silence between us learned how to bloom.</p>
+<p>Even silence bloomed when you stayed.</p>
 <div class="question">
-<p>What does love feel like to you?</p>
+<p>Love feels like…</p>
 <div class="options">
-<button onclick="choose(this)">Calm</button>
-<button onclick="choose(this)">Safe</button>
-<button onclick="choose(this)">Ours</button>
+<button onclick="choose(this)">Peace</button>
+<button onclick="choose(this)">Home</button>
 </div>
-<p class="thankyou">Thank you for choosing this, Vaishu 🤍 — Rakesh</p>
+<p class="thankyou">Thank you for choosing this, Vaishu 🤍</p>
 </div>
 </div>
 
 <div class="day" data-day="8">
 <h3>🤝 Propose Day</h3>
-<p>I still choose you, not loudly — but forever.</p>
+<p>I still choose you — quietly, forever.</p>
 <div class="question">
-<p>What keeps us together?</p>
+<p>What matters most?</p>
 <div class="options">
 <button onclick="choose(this)">Trust</button>
-<button onclick="choose(this)">Patience</button>
+<button onclick="choose(this)">Us</button>
 </div>
-<p class="thankyou">Always grateful, Vaishu 🤍 — Rakesh</p>
+<p class="thankyou">Always 🤍</p>
 </div>
 </div>
 
 <div class="day" data-day="9">
 <h3>🍫 Chocolate Day</h3>
-<p>Sweet days, bitter days — still us.</p>
+<p>Sweet, bitter, real — still love.</p>
 <div class="question">
-<p>Our love is…</p>
+<p>Our bond is…</p>
 <div class="options">
-<button onclick="choose(this)">Real</button>
 <button onclick="choose(this)">Strong</button>
+<button onclick="choose(this)">True</button>
 </div>
-<p class="thankyou">That means everything to me 🤍</p>
+<p class="thankyou">That’s everything 🤍</p>
 </div>
 </div>
 
 <div class="day" data-day="10">
 <h3>🧸 Teddy Day</h3>
-<p>When you miss me, imagine my arms.</p>
-<div class="question">
-<p>What comforts you the most?</p>
-<div class="options">
-<button onclick="choose(this)">Presence</button>
-<button onclick="choose(this)">Care</button>
-</div>
-<p class="thankyou">I’ll always be that 🤍</p>
-</div>
+<p>Comfort waits patiently.</p>
 </div>
 
 <div class="day" data-day="11">
 <h3>💌 Promise Day</h3>
-<p>I promise — not perfection, but staying.</p>
-<div class="question">
-<p>What should I never stop doing?</p>
-<div class="options">
-<button onclick="choose(this)">Waiting</button>
-<button onclick="choose(this)">Loving</button>
-</div>
-<p class="thankyou">I promise, Vaishu 🤍</p>
-</div>
+<p>I promise staying.</p>
 </div>
 
 <div class="day" data-day="12">
 <h3>🤗 Hug Day</h3>
-<p>The hug we owe each other is waiting.</p>
-<div class="question">
-<p>Our first hug will feel like…</p>
-<div class="options">
-<button onclick="choose(this)">Home</button>
-<button onclick="choose(this)">Relief</button>
-</div>
-<p class="thankyou">Soon 🤍</p>
-</div>
+<p>The hug we owe destiny.</p>
 </div>
 
 <div class="day" data-day="13">
 <h3>💋 Kiss Day</h3>
-<p>Some kisses are written in destiny.</p>
-<div class="question">
-<p>What matters more?</p>
-<div class="options">
-<button onclick="choose(this)">Bond</button>
-<button onclick="choose(this)">Respect</button>
-</div>
-<p class="thankyou">Always you 🤍</p>
-</div>
+<p>Some moments are worth waiting for.</p>
 </div>
 
 <div class="day final" data-day="14">
 <h3>❤️ Valentine’s Day</h3>
 <p>
 Vaishu,<br><br>
-It has been more than three years — of distance, fights, patience, silence, and choosing each other again.<br><br>
-We haven’t met yet, but my heart already knows you.  
-Every wait has your name in it.  
-Every future I imagine ends with you walking towards me.<br><br>
-Until you come back from the UK… I will stay, wait, and love you — quietly, honestly, completely.<br><br>
-Always yours,<br>
+Three years of distance could not undo what we built.<br>
+We didn’t meet — yet we stayed.<br><br>
+Until the day you come back from the UK,<br>
+every heartbeat here waits for you.<br><br>
+Forever yours,<br>
 <strong>Rakesh</strong>
 </p>
 </div>
 
 </div>
 
-<!-- MUSIC -->
 <audio id="bgMusic" loop>
 <source src="love.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-function unlock() {
-  if (passwordInput.value === "Vaishuwedsrakesh") {
+function unlock(){
+  if(passwordInput.value==="Vaishuwedsrakesh"){
     lockScreen.style.display="none";
     mainContent.style.display="block";
-    bgMusic.volume=0;
-    bgMusic.play();
-    let v=0;
-    const f=setInterval(()=>{ if(v<0.4){v+=0.02;bgMusic.volume=v}else clearInterval(f)},200);
-    petals();
-    unlockDays();
-  } else {
-    errorMsg.innerText="Only Vaishu knows this 🤍";
-  }
+    bgMusic.volume=0; bgMusic.play();
+    let v=0; const f=setInterval(()=>{ if(v<0.35){v+=0.02;bgMusic.volume=v}else clearInterval(f)},200);
+    petals(); activateDays();
+  } else errorMsg.innerText="Only Vaishu knows this 🤍";
 }
 
-function unlockDays(){
-  const today = new Date().getDate();
+function activateDays(){
+  const today=new Date().getDate();
   document.querySelectorAll(".day").forEach(d=>{
-    if (today < d.dataset.day) d.classList.add("locked");
+    if(today < d.dataset.day){
+      d.classList.add("inactive");
+      d.insertAdjacentHTML("beforeend","<div class='lockNote'>This will bloom on its day 🤍</div>");
+    }
   });
 }
 
 function choose(btn){
-  const box = btn.closest(".question");
+  const box=btn.closest(".question");
   box.querySelectorAll("button").forEach(b=>b.disabled=true);
-  const t = box.querySelector(".thankyou");
-  t.style.opacity=1;
+  box.querySelector(".thankyou").style.opacity=1;
 }
 
 function petals(){
@@ -308,13 +290,12 @@ function petals(){
     const p=document.createElement("div");
     p.className="petal";
     p.style.left=Math.random()*innerWidth+"px";
-    p.style.animationDuration=5+Math.random()*5+"s";
+    p.style.animationDuration=6+Math.random()*6+"s";
     document.body.appendChild(p);
-    setTimeout(()=>p.remove(),10000);
-  },500);
+    setTimeout(()=>p.remove(),12000);
+  },600);
 }
 </script>
 
 </body>
 </html>
-
