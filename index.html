@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Vaishu & Rakesh ❤️</title>
+<title>From Rakesh to Vaishu ❤️</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
@@ -21,6 +21,45 @@ body{
   font-family:'Poppins',sans-serif;
   background:linear-gradient(180deg,var(--ivory),#fff);
   color:var(--text);
+  overflow-x:hidden;
+}
+
+/* PASSWORD */
+#lock{
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at top,var(--green),transparent 60%),
+    radial-gradient(circle at bottom,var(--pink),transparent 60%);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  z-index:10;
+}
+#lock h1{
+  font-family:'Dancing Script',cursive;
+  font-size:3rem;
+}
+#lock p{
+  max-width:420px;
+  margin:12px 0 20px;
+  opacity:.85;
+}
+#lock input{
+  padding:12px 18px;
+  border-radius:20px;
+  border:1px solid #ddd;
+  outline:none;
+}
+#lock button{
+  margin-top:14px;
+  padding:10px 26px;
+  border-radius:22px;
+  border:none;
+  background:linear-gradient(45deg,var(--pink),var(--green));
+  cursor:pointer;
 }
 
 /* HERO */
@@ -39,12 +78,23 @@ body{
 .hero h1{
   font-family:'Dancing Script',cursive;
   font-size:3.8rem;
-  color:#5c3a3a;
 }
 .hero p{
   margin-top:16px;
   font-size:1.1rem;
   max-width:520px;
+}
+
+/* JASMINE FLOAT */
+.jasmine{
+  position:fixed;
+  top:-20px;
+  font-size:18px;
+  animation:fall 12s linear infinite;
+  opacity:.4;
+}
+@keyframes fall{
+  to{transform:translateY(110vh) rotate(360deg)}
 }
 
 /* WEEK */
@@ -54,7 +104,7 @@ body{
   padding:60px 20px;
 }
 .day{
-  background:rgba(255,255,255,.85);
+  background:rgba(255,255,255,.9);
   border-radius:28px;
   padding:34px;
   margin-bottom:50px;
@@ -70,22 +120,21 @@ body{
 .day h2{
   font-weight:500;
   font-size:1.6rem;
-  color:#6a3d3d;
 }
 .day p{
   margin-top:14px;
   line-height:1.7;
 }
 
-/* INTERACTIONS */
-.button{
-  margin-top:18px;
-  padding:10px 22px;
-  border-radius:24px;
+/* OPTIONS */
+.options button{
+  margin:10px 10px 0 0;
+  padding:8px 18px;
+  border-radius:18px;
   border:none;
   background:linear-gradient(45deg,var(--pink),var(--green));
   cursor:pointer;
-  font-size:.9rem;
+  font-size:.85rem;
 }
 
 /* FOOTER */
@@ -100,31 +149,48 @@ body{
 
 <body>
 
+<!-- PASSWORD -->
+<div id="lock">
+  <h1>Vaishu ❤️ Rakesh</h1>
+  <p>
+    This page is not public.<br>
+    It’s for the girl who stayed, even when distance tried to win.
+  </p>
+  <input id="pwd" type="password" placeholder="Our word">
+  <button onclick="unlock()">Enter</button>
+</div>
+
 <!-- HERO -->
-<section class="hero" id="start">
+<section class="hero">
   <h1>Vaishu & Rakesh</h1>
   <p>
-    This page isn’t for impressing anyone.<br>
-    It’s just Rakesh choosing Vaishu — quietly, completely, every day.
+    Three plus years.<br>
+    Distance, fights, silence, patience.<br>
+    Still… love stayed.
   </p>
 </section>
 
-<!-- WEEK -->
 <section class="week" id="week"></section>
 
 <div class="footer">
-  Made with warmth, patience & pure love 🌸
+  From Rakesh — with love, always 🌸
 </div>
 
-<!-- Invisible Music -->
 <iframe id="music" width="0" height="0" allow="autoplay"></iframe>
 
 <script>
+const PASSWORD="Vaishuwedsrakesh";
 const her="Vaishu";
 const him="Rakesh";
-const song="1v_qKcDa_v4"; // Telugu song
+const song="1v_qKcDa_v4";
 
-/* MUSIC: plays on first interaction anywhere */
+function unlock(){
+  if(document.getElementById("pwd").value===PASSWORD){
+    document.getElementById("lock").style.display="none";
+  }
+}
+
+/* MUSIC */
 let played=false;
 document.addEventListener("click",()=>{
  if(!played){
@@ -134,66 +200,58 @@ document.addEventListener("click",()=>{
  }
 },{once:true});
 
-/* DATE */
-const now=new Date();
-const today=`${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
-
-/* DAYS CONTENT */
-const days=[
-{
- d:"02-07", t:"🌹 Rose Day",
- m:`${her}, some loves shout. Ours feels like jasmine — soft, steady, always present.`,
- extra:`<button class="button" onclick="this.innerText='🌹 For you, always'">Give Rose</button>`
-},
-{
- d:"02-08", t:"💍 Propose Day",
- m:`${him} doesn’t propose with drama. Just this truth — life feels right when you’re in it.`,
- extra:`<button class="button" onclick="this.innerText='Yes, always 🤍'">Your Answer</button>`
-},
-{
- d:"02-09", t:"🍫 Chocolate Day",
- m:`Sweet things exist, ${her}. But comfort tastes better — like evening tea with you.`,
- extra:`<button class="button" onclick="alert('Because peace is sweeter than sugar 🤍')">Why you?</button>`
-},
-{
- d:"02-10", t:"🧸 Teddy Day",
- m:`If warmth had a place, ${him} would rest it with you.`,
- extra:`<button class="button" onclick="this.innerText='🤍 Hug received'">Tap for Hug</button>`
-},
-{
- d:"02-11", t:"🤞 Promise Day",
- m:`No big promises. Just this — I’ll stay gentle, even on hard days.`,
- extra:`<button class="button" onclick="this.innerText='Promise kept 🌿'">Seal Promise</button>`
-},
-{
- d:"02-12", t:"🤍 Hug Day",
- m:`Some hugs heal without words. Imagine one here.`,
- extra:`<button class="button" onclick="this.innerText='Closer 🤍'">Hold</button>`
-},
-{
- d:"02-14", t:"❤️ Valentine’s Day",
- m:`${her}, with you, love feels calm. Like coming home.`,
- extra:`<button class="button" onclick="this.innerText='Forever begins 🌸'">Open Heart</button>`
+/* JASMINE */
+for(let i=0;i<12;i++){
+ const j=document.createElement("div");
+ j.className="jasmine";
+ j.innerText="🌼";
+ j.style.left=Math.random()*100+"vw";
+ j.style.animationDelay=Math.random()*10+"s";
+ document.body.appendChild(j);
 }
+
+/* DAYS */
+const days=[
+["🌹 Rose Day",
+ `${her}, love didn’t come to me loudly. It came quietly… and stayed.`,
+ ["I felt it too","I still feel it"]],
+["💍 Propose Day",
+ `I won’t ask dramatically. I’ll just say — I choose you, even from far.`,
+ ["I choose you","I always did"]],
+["🍫 Chocolate Day",
+ `Sweet moments were less. Hard days were more. Still we stayed.`,
+ ["Because we care","Because we are us"]],
+["🧸 Teddy Day",
+ `If I could send warmth through distance, you’d feel it today.`,
+ ["I feel it","I’m holding it"]],
+["🤞 Promise Day",
+ `I promise to stay patient until the day I finally see you.`,
+ ["I trust you","I’m waiting"]],
+["🤍 Hug Day",
+ `Imagine this hug. No words. Just relief.`,
+ ["Closer","Stay"]],
+["❤️ Valentine’s Day",
+ `${her}, this love survived distance. It will survive life.`,
+ ["Forever","With you"]]
 ];
 
-/* RENDER */
 const wrap=document.getElementById("week");
-days.forEach(x=>{
- const open=today>=x.d;
+days.forEach(d=>{
  const div=document.createElement("div");
  div.className="day";
  div.innerHTML=`
-  <h2>${x.t}</h2>
-  <p>${open?x.m:"This feeling opens on its day 🤍"}</p>
-  ${open?x.extra:""}
- `;
+  <h2>${d[0]}</h2>
+  <p>${d[1]}</p>
+  <div class="options">
+    <button onclick="this.innerText='🤍'">${d[2][0]}</button>
+    <button onclick="this.innerText='🤍'">${d[2][1]}</button>
+  </div>`;
  wrap.appendChild(div);
 });
 
 /* SCROLL */
 const obs=new IntersectionObserver(e=>{
- e.forEach(i=>i.isIntersecting&&i.target.classList.add("show"));
+ e.forEach(x=>x.isIntersecting&&x.target.classList.add("show"));
 },{threshold:.2});
 document.querySelectorAll(".day").forEach(d=>obs.observe(d));
 </script>
