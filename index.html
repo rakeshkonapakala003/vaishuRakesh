@@ -1,297 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vaishu ❤️ Rakesh</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<title>For Vaishu ❤️ From Rakesh</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <style>
-* { margin:0; padding:0; box-sizing:border-box; }
+:root{
+  --pink:#f7c1d9;
+  --green:#cfe9d8;
+  --gold:#c9a24d;
+  --dark:#2b2b2b;
+}
 
-body {
-  font-family:'Poppins',sans-serif;
-  background:linear-gradient(180deg,#fff7f9,#eef7f1);
-  color:#2e2e2e;
+*{box-sizing:border-box;margin:0;padding:0;font-family: 'Poppins', sans-serif;}
+
+body{
+  background:linear-gradient(180deg,#fff,#fdf7fa);
+  color:#333;
   overflow-x:hidden;
 }
 
-/* LOCK */
-#lockScreen {
-  height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
+/* PASSWORD */
+#lock{
+  position:fixed;inset:0;
+  background:linear-gradient(135deg,#f7c1d9,#cfe9d8);
+  display:flex;align-items:center;justify-content:center;
+  z-index:999;
+}
+.lock-box{
+  background:white;
+  padding:30px;
+  border-radius:20px;
   text-align:center;
+  width:90%;max-width:320px;
+  box-shadow:0 20px 40px rgba(0,0,0,.15);
 }
-#lockScreen h1 { font-size:2.4rem; color:#c2185b; }
-#lockScreen p { margin:10px 0 25px; opacity:.85; }
-#lockScreen input {
-  padding:12px;
-  width:240px;
-  border-radius:30px;
-  border:1px solid #ccc;
-  text-align:center;
+.lock-box h2{margin-bottom:15px;}
+.lock-box input{
+  width:100%;padding:12px;border-radius:10px;
+  border:1px solid #ccc;margin-bottom:10px;
 }
-#lockScreen button {
-  margin-top:15px;
-  padding:12px 40px;
-  border-radius:30px;
-  border:none;
-  background:linear-gradient(45deg,#2e7d32,#f48fb1);
-  color:white;
+.lock-box button{
+  width:100%;padding:12px;border:none;
+  border-radius:10px;
+  background:var(--gold);color:white;
+  font-size:16px;
 }
-#errorMsg { margin-top:10px; color:#c62828; }
-
-/* MAIN */
-#mainContent { display:none; animation:fadeIn 1.2s ease; }
 
 /* HERO */
-.hero {
-  min-height:75vh;
-  padding:50px 25px;
+.hero{
+  min-height:90vh;
   display:flex;
-  flex-direction:column;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
   text-align:center;
+  padding:40px 20px;
+}
+.hero h1{
+  font-size:2.3rem;
+  margin-bottom:15px;
+}
+.hero p{
+  font-size:1.1rem;
+  opacity:.85;
+  max-width:500px;
+  margin:auto;
+}
+
+/* DAYS */
+.days{
+  max-width:900px;
+  margin:auto;
+  padding:20px;
+}
+.day{
+  background:white;
+  margin:25px 0;
+  padding:25px;
+  border-radius:25px;
+  box-shadow:0 15px 30px rgba(0,0,0,.08);
   position:relative;
 }
-
-/* DIYA GLOW */
-.diya {
-  width:14px;
-  height:14px;
-  background:#ffb300;
-  border-radius:50%;
-  box-shadow:0 0 20px rgba(255,179,0,0.6);
-  animation:glow 3.5s ease-in-out infinite;
-  margin-bottom:20px;
+.day.locked{
+  opacity:.55;
 }
-
-@keyframes glow {
-  0%,100% { box-shadow:0 0 18px rgba(255,179,0,0.5); }
-  50% { box-shadow:0 0 32px rgba(255,179,0,0.9); }
+.day h2{
+  margin-bottom:10px;
 }
-
-/* KOLAM SVG */
-.kolam {
-  width:160px;
-  margin-bottom:20px;
-}
-.kolam path {
-  fill:none;
-  stroke:#c2185b;
-  stroke-width:1.2;
-  stroke-dasharray:600;
-  stroke-dashoffset:600;
-  animation:draw 6s ease forwards;
-}
-@keyframes draw {
-  to { stroke-dashoffset:0; }
-}
-
-.hero h2 { font-size:2.6rem; color:#2e7d32; }
-.hero p {
-  margin-top:18px;
-  font-size:1.05rem;
-  line-height:1.8;
-  opacity:.9;
-  max-width:520px;
-}
-
-/* DAY CARD */
-.day {
-  margin:22px;
-  padding:26px;
-  border-radius:30px;
-  background:rgba(255,255,255,0.85);
-  box-shadow:0 20px 45px rgba(0,0,0,0.06);
-}
-
-.day h3 { color:#ad1457; }
-
-/* BODY COLLAPSE */
-.dayBody {
-  overflow:hidden;
-  max-height:0;
-  opacity:0;
-  transition:max-height 1s ease, opacity 1s ease;
-}
-
-.day.active .dayBody {
-  max-height:1200px;
-  opacity:1;
-  margin-top:12px;
-}
-
-.lockNote {
-  margin-top:10px;
-  font-size:.85rem;
-  color:#888;
-}
-
-/* QUESTIONS */
-.question { margin-top:18px; }
-.options button {
-  margin:6px;
-  padding:8px 20px;
-  border-radius:22px;
+.day button{
+  margin-top:15px;
+  padding:10px 18px;
   border:none;
-  background:#fde4ec;
+  border-radius:20px;
+  background:var(--pink);
 }
-.options button:hover { background:#f8bbd0; }
-
-.thankyou {
-  margin-top:12px;
-  font-size:.9rem;
-  color:#2e7d32;
-  opacity:0;
-  transition:.6s;
+.answer{
+  margin-top:15px;
+  padding:12px;
+  border-radius:15px;
+  background:var(--green);
+  display:none;
 }
 
 /* FINAL DAY */
-.final h3 { font-size:2.4rem; color:#c2185b; }
-.final p {
-  margin-top:20px;
-  font-size:1.08rem;
-  line-height:1.9;
+.final{
+  background:linear-gradient(135deg,#f7c1d9,#cfe9d8);
+  color:#2b2b2b;
+}
+.final h2{
+  font-size:2rem;
+}
+.final p{
+  font-size:1.2rem;
 }
 
-/* PETALS */
-.petal {
-  position:fixed;
-  top:-10px;
-  width:7px;
-  height:7px;
-  background:white;
-  border-radius:50%;
+/* TEMPLE SVG GLOW */
+.temple{
+  margin:20px auto;
+  width:80px;
   opacity:.7;
-  animation:fall linear infinite;
+  animation:glow 3s infinite ease-in-out;
 }
-@keyframes fall {
-  to { transform:translateY(110vh) rotate(360deg); }
-}
-@keyframes fadeIn {
-  from {opacity:0} to {opacity:1}
+@keyframes glow{
+  0%,100%{transform:scale(1);opacity:.6}
+  50%{transform:scale(1.1);opacity:1}
 }
 </style>
 </head>
 
 <body>
 
-<!-- LOCK -->
-<div id="lockScreen">
-  <h1>💍 Vaishu & Rakesh</h1>
-  <p>A love that chose patience</p>
-  <input type="password" id="passwordInput" placeholder="Our secret 🤍">
-  <button onclick="unlock()">Enter</button>
-  <p id="errorMsg"></p>
+<!-- PASSWORD -->
+<div id="lock">
+  <div class="lock-box">
+    <h2>Only for Vaishu ❤️</h2>
+    <input type="password" id="pass" placeholder="Password"/>
+    <button onclick="unlock()">Enter</button>
+  </div>
 </div>
 
-<!-- MAIN -->
-<div id="mainContent">
+<audio id="bgm" src="love.mp3" loop></audio>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="diya"></div>
-
-  <svg class="kolam" viewBox="0 0 200 200">
-    <path d="M100 20 Q160 60 100 100 Q40 140 100 180 Q160 140 100 100 Q40 60 100 20"/>
-  </svg>
-
-  <h2>Vaishu 🤍</h2>
-  <p>
-    This is not a website.<br>
-    This is a feeling built slowly — one day at a time.<br><br>
-    We fought. We waited. We stayed.<br>
-    Until the day I finally see you walk towards me.<br><br>
-    — Rakesh
-  </p>
+  <div>
+    <svg class="temple" viewBox="0 0 64 64">
+      <path fill="#c9a24d" d="M32 2L2 22h60z"/>
+      <rect x="10" y="22" width="44" height="36" fill="#f2d28b"/>
+    </svg>
+    <h1>Vaishu ❤️ Rakesh</h1>
+    <p>
+      This is not a website.<br>
+      This is my heart, opening one day at a time…<br><br>
+      3+ years of love, distance, fights, patience, faith.<br>
+      One day, I’ll wait at the airport — and this distance will end.
+    </p>
+  </div>
 </section>
 
 <!-- DAYS -->
-<div class="day" data-day="7">
-<h3>🌹 Rose Day</h3>
-<div class="dayBody">
-<p>Even silence bloomed when you stayed.</p>
-<div class="question">
-<p>Love feels like…</p>
-<div class="options">
-<button onclick="choose(this)">Peace</button>
-<button onclick="choose(this)">Home</button>
-</div>
-<p class="thankyou">Thank you for choosing this, Vaishu 🤍</p>
-</div>
-</div>
-<div class="lockNote"></div>
-</div>
-
-<div class="day final" data-day="14">
-<h3>❤️ Valentine’s Day</h3>
-<div class="dayBody">
-<p>
-Vaishu,<br><br>
-Three years of distance couldn’t break us.<br>
-We didn’t meet — yet we stayed.<br><br>
-Until you come back from the UK,<br>
-every heartbeat here waits for you.<br><br>
-Forever yours,<br>
-<strong>Bava</strong>
-</p>
-</div>
-</div>
-
-</div>
-
-<audio id="bgMusic" loop>
-<source src="love.mp3" type="audio/mpeg">
-</audio>
+<section class="days" id="days"></section>
 
 <script>
+const PASSWORD = "Vaishuwedsrakesh";
+const startDate = new Date("2026-02-07"); // Rose Day
+const today = new Date();
+today.setHours(0,0,0,0);
+
+const data = [
+ {title:"🌹 Rose Day",msg:"If I could send one rose for every time I missed you… the whole world would turn red.",q:"Do you still feel my love every day?"},
+ {title:"💌 Propose Day",msg:"Even after all these years… I still choose you.",q:"Would you still say yes to me today?"},
+ {title:"🍫 Chocolate Day",msg:"Life with you is sweet, bitter, messy, perfect — just like chocolate.",q:"Am I still your comfort?"},
+ {title:"🧸 Teddy Day",msg:"Until I can hold you, let this page hug you.",q:"Do you feel safe with me?"},
+ {title:"🤝 Promise Day",msg:"I promise — not perfection, but presence.",q:"Will you grow old with me?"},
+ {title:"🤍 Hug Day",msg:"Close your eyes. This is me holding you.",q:"Can you feel it?"},
+ {title:"💋 Kiss Day",msg:"Distance can’t stop love. It only trains patience.",q:"Will you save all kisses for me?"},
+ {title:"💖 Valentine’s Day",final:true,msg:"Vaishu…<br><br>You are my home.<br>You are my wife in my heart already.<br><br>No matter how long the distance, no matter how many fights… I choose you.<br><br>This love is calm. This love is forever.<br><br>— Yours, Bava"}
+];
+
+const daysEl = document.getElementById("days");
+
+data.forEach((d,i)=>{
+ const unlockDate = new Date(startDate);
+ unlockDate.setDate(startDate.getDate()+i);
+
+ const card = document.createElement("div");
+ card.className="day";
+ if(today < unlockDate) card.classList.add("locked");
+ if(d.final) card.classList.add("final");
+
+ card.innerHTML = `
+  <h2>${d.title}</h2>
+  <p>${d.msg || ""}</p>
+  ${d.q ? `
+    <button onclick="answer(this,'${unlockDate.toDateString()}')">Answer</button>
+    <div class="answer">Thank you for choosing love 🤍</div>
+  ` : ""}
+ `;
+ daysEl.appendChild(card);
+});
+
 function unlock(){
-  if(passwordInput.value==="Vaishuwedsrakesh"){
-    lockScreen.style.display="none";
-    mainContent.style.display="block";
-    bgMusic.volume=0; bgMusic.play();
-    let v=0; const f=setInterval(()=>{ if(v<0.35){v+=0.02;bgMusic.volume=v}else clearInterval(f)},200);
-    petals(); activateDays();
-  } else errorMsg.innerText="Only Vaishu knows this 🤍";
+ if(document.getElementById("pass").value===PASSWORD){
+   document.getElementById("lock").style.display="none";
+   document.getElementById("bgm").play();
+ }
 }
 
-function activateDays(){
-  const today=new Date().getDate();
-  document.querySelectorAll(".day").forEach(d=>{
-    const note=d.querySelector(".lockNote");
-    if(today>=d.dataset.day){
-      d.classList.add("active");
-      if(note) note.innerText="";
-    } else {
-      if(note) note.innerText="This will bloom on its day 🤍";
-    }
-  });
-}
-
-function choose(btn){
-  const q=btn.closest(".question");
-  q.querySelectorAll("button").forEach(b=>b.disabled=true);
-  q.querySelector(".thankyou").style.opacity=1;
-}
-
-function petals(){
-  setInterval(()=>{
-    const p=document.createElement("div");
-    p.className="petal";
-    p.style.left=Math.random()*innerWidth+"px";
-    p.style.animationDuration=6+Math.random()*6+"s";
-    document.body.appendChild(p);
-    setTimeout(()=>p.remove(),12000);
-  },600);
+function answer(btn,date){
+ const d = new Date(date);
+ if(today < d){
+   alert("Not today love 🤍 Let the day arrive.");
+   return;
+ }
+ btn.nextElementSibling.style.display="block";
+ btn.style.display="none";
 }
 </script>
 
 </body>
 </html>
-
