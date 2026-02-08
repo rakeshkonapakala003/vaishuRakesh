@@ -48,21 +48,58 @@ body {
 /* MAIN */
 #mainContent { display:none; animation:fadeIn 1.2s ease; }
 
-/* HERO (FIXED HEIGHT) */
+/* HERO */
 .hero {
   min-height:75vh;
   padding:50px 25px;
   display:flex;
   flex-direction:column;
   justify-content:center;
+  align-items:center;
   text-align:center;
+  position:relative;
 }
+
+/* DIYA GLOW */
+.diya {
+  width:14px;
+  height:14px;
+  background:#ffb300;
+  border-radius:50%;
+  box-shadow:0 0 20px rgba(255,179,0,0.6);
+  animation:glow 3.5s ease-in-out infinite;
+  margin-bottom:20px;
+}
+
+@keyframes glow {
+  0%,100% { box-shadow:0 0 18px rgba(255,179,0,0.5); }
+  50% { box-shadow:0 0 32px rgba(255,179,0,0.9); }
+}
+
+/* KOLAM SVG */
+.kolam {
+  width:160px;
+  margin-bottom:20px;
+}
+.kolam path {
+  fill:none;
+  stroke:#c2185b;
+  stroke-width:1.2;
+  stroke-dasharray:600;
+  stroke-dashoffset:600;
+  animation:draw 6s ease forwards;
+}
+@keyframes draw {
+  to { stroke-dashoffset:0; }
+}
+
 .hero h2 { font-size:2.6rem; color:#2e7d32; }
 .hero p {
   margin-top:18px;
   font-size:1.05rem;
   line-height:1.8;
   opacity:.9;
+  max-width:520px;
 }
 
 /* DAY CARD */
@@ -74,10 +111,9 @@ body {
   box-shadow:0 20px 45px rgba(0,0,0,0.06);
 }
 
-/* HEADER ALWAYS VISIBLE */
 .day h3 { color:#ad1457; }
 
-/* BODY COLLAPSE CONTROL */
+/* BODY COLLAPSE */
 .dayBody {
   overflow:hidden;
   max-height:0;
@@ -85,14 +121,12 @@ body {
   transition:max-height 1s ease, opacity 1s ease;
 }
 
-/* ACTIVE DAY */
 .day.active .dayBody {
   max-height:1200px;
   opacity:1;
   margin-top:12px;
 }
 
-/* INACTIVE MESSAGE */
 .lockNote {
   margin-top:10px;
   font-size:.85rem;
@@ -162,13 +196,19 @@ body {
 
 <!-- HERO -->
 <section class="hero">
+  <div class="diya"></div>
+
+  <svg class="kolam" viewBox="0 0 200 200">
+    <path d="M100 20 Q160 60 100 100 Q40 140 100 180 Q160 140 100 100 Q40 60 100 20"/>
+  </svg>
+
   <h2>Vaishu 🤍</h2>
   <p>
     This is not a website.<br>
     This is a feeling built slowly — one day at a time.<br><br>
     We fought. We waited. We stayed.<br>
     Until the day I finally see you walk towards me.<br><br>
-    — from your forever bava
+    — Rakesh
   </p>
 </section>
 
@@ -189,22 +229,6 @@ body {
 <div class="lockNote"></div>
 </div>
 
-<div class="day" data-day="8">
-<h3>🤝 Propose Day</h3>
-<div class="dayBody">
-<p>I still choose you — quietly, forever.</p>
-<div class="question">
-<p>What matters most?</p>
-<div class="options">
-<button onclick="choose(this)">Trust</button>
-<button onclick="choose(this)">Us</button>
-</div>
-<p class="thankyou">Always 🤍</p>
-</div>
-</div>
-<div class="lockNote"></div>
-</div>
-
 <div class="day final" data-day="14">
 <h3>❤️ Valentine’s Day</h3>
 <div class="dayBody">
@@ -215,7 +239,7 @@ We didn’t meet — yet we stayed.<br><br>
 Until you come back from the UK,<br>
 every heartbeat here waits for you.<br><br>
 Forever yours,<br>
-<strong>Rakesh</strong>
+<strong>Bava</strong>
 </p>
 </div>
 </div>
@@ -270,3 +294,4 @@ function petals(){
 
 </body>
 </html>
+
