@@ -2,259 +2,273 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>From Rakesh to Vaishu ❤️</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vaishu ❤️ Rakesh</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --pink:#f4a6b8;
-  --green:#c7dfc5;
-  --ivory:#fffaf3;
-  --gold:#d4af37;
-  --text:#3a2c2c;
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #fdeff2, #e8f6ef);
+  color: #2e2e2e;
+  overflow-x: hidden;
 }
 
-*{margin:0;padding:0;box-sizing:border-box}
-body{
-  font-family:'Poppins',sans-serif;
-  background:linear-gradient(180deg,var(--ivory),#fff);
-  color:var(--text);
-  overflow-x:hidden;
+/* -------- LOCK SCREEN -------- */
+#lockScreen {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
 }
 
-/* PASSWORD */
-#lock{
-  position:fixed;
-  inset:0;
-  background:
-    radial-gradient(circle at top,var(--green),transparent 60%),
-    radial-gradient(circle at bottom,var(--pink),transparent 60%);
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  z-index:10;
-}
-#lock h1{
-  font-family:'Dancing Script',cursive;
-  font-size:3rem;
-}
-#lock p{
-  max-width:420px;
-  margin:12px 0 20px;
-  opacity:.85;
-}
-#lock input{
-  padding:12px 18px;
-  border-radius:20px;
-  border:1px solid #ddd;
-  outline:none;
-}
-#lock button{
-  margin-top:14px;
-  padding:10px 26px;
-  border-radius:22px;
-  border:none;
-  background:linear-gradient(45deg,var(--pink),var(--green));
-  cursor:pointer;
+#lockScreen h1 {
+  font-size: 2.2rem;
+  color: #c2185b;
 }
 
-/* HERO */
-.hero{
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  padding:40px 20px;
-  background:
-    radial-gradient(circle at top,var(--green),transparent 60%),
-    radial-gradient(circle at bottom,var(--pink),transparent 60%);
-}
-.hero h1{
-  font-family:'Dancing Script',cursive;
-  font-size:3.8rem;
-}
-.hero p{
-  margin-top:16px;
-  font-size:1.1rem;
-  max-width:520px;
+#lockScreen p {
+  margin: 10px 0 20px;
+  opacity: 0.8;
 }
 
-/* JASMINE FLOAT */
-.jasmine{
-  position:fixed;
-  top:-20px;
-  font-size:18px;
-  animation:fall 12s linear infinite;
-  opacity:.4;
-}
-@keyframes fall{
-  to{transform:translateY(110vh) rotate(360deg)}
+#lockScreen input {
+  padding: 12px;
+  width: 220px;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  text-align: center;
 }
 
-/* WEEK */
-.week{
-  max-width:900px;
-  margin:0 auto;
-  padding:60px 20px;
-}
-.day{
-  background:rgba(255,255,255,.9);
-  border-radius:28px;
-  padding:34px;
-  margin-bottom:50px;
-  box-shadow:0 30px 70px rgba(0,0,0,.08);
-  opacity:0;
-  transform:translateY(40px);
-  transition:all .8s ease;
-}
-.day.show{
-  opacity:1;
-  transform:translateY(0);
-}
-.day h2{
-  font-weight:500;
-  font-size:1.6rem;
-}
-.day p{
-  margin-top:14px;
-  line-height:1.7;
+#lockScreen button {
+  margin-top: 15px;
+  padding: 10px 30px;
+  border-radius: 30px;
+  border: none;
+  background: linear-gradient(45deg,#43a047,#f06292);
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
 }
 
-/* OPTIONS */
-.options button{
-  margin:10px 10px 0 0;
-  padding:8px 18px;
-  border-radius:18px;
-  border:none;
-  background:linear-gradient(45deg,var(--pink),var(--green));
-  cursor:pointer;
-  font-size:.85rem;
+#errorMsg {
+  margin-top: 10px;
+  color: #d32f2f;
 }
 
-/* FOOTER */
-.footer{
-  text-align:center;
-  padding:30px;
-  font-size:.9rem;
-  opacity:.7;
+/* -------- MAIN CONTENT -------- */
+#mainContent {
+  display: none;
+  animation: fadeIn 1.5s ease forwards;
+}
+
+header {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+header h2 {
+  font-size: 2rem;
+  color: #2e7d32;
+}
+
+header p {
+  margin-top: 10px;
+  opacity: 0.85;
+}
+
+.section {
+  background: rgba(255,255,255,0.75);
+  margin: 20px;
+  padding: 25px;
+  border-radius: 25px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+}
+
+.section h3 {
+  color: #ad1457;
+  margin-bottom: 10px;
+}
+
+.question {
+  margin-top: 15px;
+}
+
+.options button {
+  margin: 6px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: none;
+  background: #fce4ec;
+  cursor: pointer;
+}
+
+.options button:hover {
+  background: #f8bbd0;
+}
+
+/* -------- JASMINE PETALS -------- */
+.petal {
+  position: fixed;
+  top: -10px;
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- PASSWORD -->
-<div id="lock">
-  <h1>Vaishu ❤️ Rakesh</h1>
-  <p>
-    This page is not public.<br>
-    It’s for the girl who stayed, even when distance tried to win.
-  </p>
-  <input id="pwd" type="password" placeholder="Our word">
+<!-- LOCK SCREEN -->
+<div id="lockScreen">
+  <h1>💍 Vaishu & Rakesh</h1>
+  <p>A Valentine surprise made with love</p>
+
+  <input type="password" id="passwordInput" placeholder="Our secret 🤍">
   <button onclick="unlock()">Enter</button>
+  <p id="errorMsg"></p>
 </div>
 
-<!-- HERO -->
-<section class="hero">
-  <h1>Vaishu & Rakesh</h1>
-  <p>
-    Three plus years.<br>
-    Distance, fights, silence, patience.<br>
-    Still… love stayed.
-  </p>
-</section>
+<!-- MAIN CONTENT -->
+<div id="mainContent">
 
-<section class="week" id="week"></section>
+<header>
+  <h2>Happy Valentine Week, Vaishu 🤍</h2>
+  <p>This is from Rakesh — for our 3+ years of love, patience & belief</p>
+</header>
 
-<div class="footer">
-  From Rakesh — with love, always 🌸
+<div class="section">
+  <h3>🌹 Rose Day</h3>
+  <p>Vaishu, if I could give you one rose for every time I missed you, the whole world would be red.</p>
+  <div class="question">
+    <p>What does a rose mean to you?</p>
+    <div class="options">
+      <button>Love</button>
+      <button>Promise</button>
+      <button>Us</button>
+    </div>
+  </div>
 </div>
 
-<iframe id="music" width="0" height="0" allow="autoplay"></iframe>
+<div class="section">
+  <h3>🤝 Propose Day</h3>
+  <p>I still choose you — after fights, distance, silence, everything.</p>
+  <div class="question">
+    <p>Will you always be my person?</p>
+    <div class="options">
+      <button>Always</button>
+      <button>Forever</button>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>🍫 Chocolate Day</h3>
+  <p>Life with you is sweet, messy, sometimes bitter — but always worth it.</p>
+  <div class="question">
+    <p>What kind of love are we?</p>
+    <div class="options">
+      <button>Sweet</button>
+      <button>Strong</button>
+      <button>Real</button>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>🧸 Teddy Day</h3>
+  <p>When you’re tired, scared, or missing me — imagine my arms around you.</p>
+</div>
+
+<div class="section">
+  <h3>💌 Promise Day</h3>
+  <p>I promise to wait, to fight less, to love more, and to meet you one day.</p>
+</div>
+
+<div class="section">
+  <h3>🤗 Hug Day</h3>
+  <p>The hug we haven’t had yet — will be the longest one.</p>
+</div>
+
+<div class="section">
+  <h3>💋 Kiss Day</h3>
+  <p>Some kisses are written in destiny. Ours is waiting.</p>
+</div>
+
+<div class="section">
+  <h3>❤️ Valentine’s Day</h3>
+  <p>Vaishu, this page is proof — love doesn’t need distance to exist.</p>
+  <p><strong>Always yours, Rakesh.</strong></p>
+</div>
+
+</div>
+
+<!-- MUSIC -->
+<audio id="bgMusic" loop>
+  <source src="love.mp3" type="audio/mpeg">
+</audio>
 
 <script>
-const PASSWORD="Vaishuwedsrakesh";
-const her="Vaishu";
-const him="Rakesh";
-const song="1v_qKcDa_v4";
+function unlock() {
+  const pass = document.getElementById("passwordInput").value;
+  const error = document.getElementById("errorMsg");
 
-function unlock(){
-  if(document.getElementById("pwd").value===PASSWORD){
-    document.getElementById("lock").style.display="none";
+  if (pass === "Vaishuwedsrakesh") {
+    document.getElementById("lockScreen").style.display = "none";
+    document.getElementById("mainContent").style.display = "block";
+
+    const music = document.getElementById("bgMusic");
+    music.volume = 0;
+    music.play();
+
+    let v = 0;
+    const fade = setInterval(() => {
+      if (v < 0.4) {
+        v += 0.02;
+        music.volume = v;
+      } else clearInterval(fade);
+    }, 200);
+
+    startPetals();
+  } else {
+    error.innerText = "Only Vaishu knows this 🤍";
   }
 }
 
-/* MUSIC */
-let played=false;
-document.addEventListener("click",()=>{
- if(!played){
-  document.getElementById("music").src=
-   `https://www.youtube.com/embed/${song}?autoplay=1&loop=1&playlist=${song}`;
-  played=true;
- }
-},{once:true});
+function startPetals() {
+  setInterval(() => {
+    const petal = document.createElement("div");
+    petal.className = "petal";
+    petal.style.left = Math.random() * window.innerWidth + "px";
+    petal.style.animationDuration = (5 + Math.random() * 5) + "s";
+    document.body.appendChild(petal);
 
-/* JASMINE */
-for(let i=0;i<12;i++){
- const j=document.createElement("div");
- j.className="jasmine";
- j.innerText="🌼";
- j.style.left=Math.random()*100+"vw";
- j.style.animationDelay=Math.random()*10+"s";
- document.body.appendChild(j);
+    setTimeout(() => petal.remove(), 10000);
+  }, 400);
 }
-
-/* DAYS */
-const days=[
-["🌹 Rose Day",
- `${her}, love didn’t come to me loudly. It came quietly… and stayed.`,
- ["I felt it too","I still feel it"]],
-["💍 Propose Day",
- `I won’t ask dramatically. I’ll just say — I choose you, even from far.`,
- ["I choose you","I always did"]],
-["🍫 Chocolate Day",
- `Sweet moments were less. Hard days were more. Still we stayed.`,
- ["Because we care","Because we are us"]],
-["🧸 Teddy Day",
- `If I could send warmth through distance, you’d feel it today.`,
- ["I feel it","I’m holding it"]],
-["🤞 Promise Day",
- `I promise to stay patient until the day I finally see you.`,
- ["I trust you","I’m waiting"]],
-["🤍 Hug Day",
- `Imagine this hug. No words. Just relief.`,
- ["Closer","Stay"]],
-["❤️ Valentine’s Day",
- `${her}, this love survived distance. It will survive life.`,
- ["Forever","With you"]]
-];
-
-const wrap=document.getElementById("week");
-days.forEach(d=>{
- const div=document.createElement("div");
- div.className="day";
- div.innerHTML=`
-  <h2>${d[0]}</h2>
-  <p>${d[1]}</p>
-  <div class="options">
-    <button onclick="this.innerText='🤍'">${d[2][0]}</button>
-    <button onclick="this.innerText='🤍'">${d[2][1]}</button>
-  </div>`;
- wrap.appendChild(div);
-});
-
-/* SCROLL */
-const obs=new IntersectionObserver(e=>{
- e.forEach(x=>x.isIntersecting&&x.target.classList.add("show"));
-},{threshold:.2});
-document.querySelectorAll(".day").forEach(d=>obs.observe(d));
 </script>
 
 </body>
 </html>
+
